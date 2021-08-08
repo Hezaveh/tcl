@@ -1,0 +1,9 @@
+Device_ID   x   Y   Volt    I(nA)   Result
+ND129P14A   0   0   0.77    20  Fail
+ND129P14B   0   1   0.77    30  Pass
+ND129P14D   0   2   0.77    40  Fail
+ND129P14E   0   3   0.77    90  Fail
+ND129P14M   1   4   0.82    60  Fail
+ND129P14X   1   5   0.82    70  Pass
+ND129P14V   1   6   0.82    50  Fail
+ND129P14W   1   7   0.82    10  Fail
