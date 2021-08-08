@@ -93,3 +93,123 @@ foreach name [array names students] {
 puts "\n"
 puts "\\n"
 puts "tab \t and no tab \\t"
+
+#string commands
+puts [string compare "Golden" "light"]
+
+puts [string index "Timing Path" 4]
+
+puts [string length "Timing Path"]
+
+puts [string range "I am studying TCL" 2 12]
+
+puts [string tolower "MARYAM"]
+
+puts [string toupper "maryam"]
+
+set s1 "::: Mary Hzv Ottawa CA :::"
+set s2 "Ottawa CA :::"
+set s3 "::: Mary"
+set s4 ":"
+
+puts "Trim Right: \"$s2\" in \"$s1\"]"
+puts "new string: [string trimright $s1 $s2]"
+
+
+puts "Trim left: \"$s3\" in \"$s1\"]"
+puts "new string: [string trimleft $s1 $s3]"
+
+puts "Trim on both side: \"$s4\" in \"$s1\"]"
+puts "new string: [string trim $s1 $s4]"
+
+set s5 "test-id@example.com"
+set s6 "*@*.com"
+puts "Matching pattern $s6 in $s5"
+if {[string match $s6 $s5 ]} {
+    puts "match found"
+} else {puts "match not found"}
+
+puts "Matching pattern \"tcl\" in $s5"
+if {[string match {tcl} $s5]} {
+    puts "match found"
+} else {puts "match not found"}
+
+set s7 "We love to study tcl "
+append s7 "by you"
+puts $s7
+
+
+#list part 1
+set l "a b c"
+puts "Item at index 2 of the list {$l} is : [lindex $l 2] \n"
+
+set list [split 7/4/1776 "/"]
+puts "We celebrate on the [lindex $list 1]'th day of the [lindex $list 0]'th month" 
+
+# iterating over List
+set p 0
+foreach q $l {
+    puts "$q is item number $p in list l"
+    incr p
+}
+
+#practice List
+set list1 "a-1 b-1 c-1"
+set list2 [split $list1 "-"]
+puts $list2
+puts "item at 2nd index in list2 is [lindex $list2 2]"
+
+#list part 2
+#concat example
+set emp_name1 "Jacob"
+set emp_name2 "Tina"
+set emp_name3 "Ryan"
+set employee_list [concat $emp_name1 $emp_name2 $emp_name3]
+puts $employee_list
+
+#linsert example
+set names "Jacob Ryan Marshal Rosy"
+set new_names [linsert $names 2 "John"]
+puts "Old list : $names "
+puts "New list : $new_names"
+
+#lreplace example
+set new_names [lreplace $names 2 2 "John"]
+puts "Old list : $names "
+puts "New list : $new_names"
+
+#list part 3
+#lappend example
+set employee_list2 "Jacob Ryan Marshal Rosy"
+set new_employee "Mary"
+puts "Old database: $employee_list2"
+lappend employee_list2 $new_employee
+puts "updated database: $employee_list2"
+
+#llength example
+puts "Size of employee list : [llength $employee_list2]"
+
+#lsort
+set sorted_list [lsort $employee_list2]
+puts "Old list : $employee_list2"
+puts "Sorted list : $sorted_list"
+
+set time_ps [list -23.06 -2.97 -11.35 -9.4]
+puts [lsort -real -decreasing $time_ps]
+
+#lrange example
+puts [lrange $employee_list2 1 2]
+
+#file handling
+set filename "results.rpt"
+set file_handle [open $filename r]
+while { [gets $file_handle data] >= 0 } {
+    #printng only the index
+    #puts [lindex $data 5]
+    #puts "[lindex $data [expr [llength $data] -1]]"
+    if {[lrange $data end end] == "Pass"} {
+        #print device id if the result is pass
+        puts [lindex $data 0]
+        }
+    }
+close $file_handle
