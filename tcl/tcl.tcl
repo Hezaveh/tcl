@@ -213,3 +213,53 @@ while { [gets $file_handle data] >= 0 } {
         }
     }
 close $file_handle
+
+
+#Procedures in tcl (functions)
+#Proc with multiple argumenrs
+proc sum {a b} {
+    return [expr $a + $b]
+}
+
+puts [sum 3 5]
+
+proc employee_modificatin {emp_ID} {
+    return [join [list "1" $emp_ID] ""]
+}
+puts [employee_modificatin 6784]
+
+#Argumenrs with defualtvalues
+proc employee_modificatin2 {emp_ID_2 {code 000}} {
+    #set code 123 -> if not set code will conside 000
+    return [join [list $code $emp_ID_2] ""]
+}
+
+puts [employee_modificatin2 6784]
+puts [employee_modificatin2 6784]
+
+#Proc with variable argumenrs
+set employees [list "Mary" "Alice" "Bob" "Nick"]
+
+proc email {employee_names} {
+    set emp_ID {}
+    foreach name $employee_names {
+        set ID [join [list $name "/@ymail.com"] ""]
+        lappend emp_ID $ID
+    }
+    return $emp_ID
+}
+puts [email $employees]
+
+#nested list in tcl
+set filename "results.rpt"
+set file_handle [open $filename r]
+set data {}
+while { [gets $file_handle line] >= 0} {
+    #puts "[lindex $line 3] and [lindex $line 4]"
+    set volts [join [list [lindex $line 3] mV] {}]
+    set current [join [list [lindex $line 4] nA] {}]
+
+    set line [lreplace $line 3 3 $volts]
+    set line [lreplace $line 4 4 $current]
+    puts $line
+}
