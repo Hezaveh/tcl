@@ -14,6 +14,7 @@ puts "Sum of the values in the list: $sumValue"
 proc average {l} {
     expr [sum $l]/[llength $l].
 }
+
 set averageValue [average $list]
 puts "Average of the values in the list: $averageValue"
 
@@ -29,6 +30,7 @@ proc median {l} {
        return [average [lrange $l [expr {($len >> 1) - 1}] [expr {$len >> 1}]]]
     }
 }
+
 set medianValue [median $list]
 puts "Median of the values in the list: $medianValue"
 
@@ -36,6 +38,7 @@ puts "Median of the values in the list: $medianValue"
 proc descendingSort {l} {
     lsort -integer -decreasing $l
 }
+
 set descendingSortList [descendingSort $list]
 puts "Descending order list: $descendingSortList"
 
@@ -50,15 +53,18 @@ proc isNinePresented {l} {
     return $listOfNines
 
 }
+
 set ninePresentedList [isNinePresented $list]
 puts "List of numbers that contain the digit 9: $ninePresentedList"
 
+#unit tests
 proc test {command expected} {
-    catch {uplevel 1 $command} result ;# so we can use variables in caller's scope
-    if {$result ne $expected} {error "$command->$result, expected $expected"
+    catch {uplevel 1 $command} result ;
+    if {$result != $expected} {error "$command->$result, expected $expected"
     } else {puts "Passed"}
 }
 
+puts "Unit tests:"
 test {expr [sum $list]} $sumValue
 test {expr [average $list]} $averageValue
 test {expr [median $list]} $medianValue
