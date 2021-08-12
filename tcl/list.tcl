@@ -68,6 +68,8 @@ puts "Unit tests:"
 test {expr [sum $list]} 9887671813
 test {expr [average $list]} 1098630201.4444444
 test {expr [median $list]} -1
+test {expr {[descendingSort $list]}} "9887669999 990 699 92 49 3 1 -1 -19" 
+test {expr {[isNinePresented $list]}} "699 49 92 990 9887669999 -19" 
 
 
 
