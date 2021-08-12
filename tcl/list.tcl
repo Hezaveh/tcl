@@ -23,10 +23,10 @@ proc median {l} {
     set list [lsort $l]
     set len [llength $l]
     if {$len & 1} {
-       # Odd number of elements, unique middle element
+       #the number of elements are odd => the middle element
        return [lindex $l [expr {$len >> 1}]]
     } else {
-       # Even number of elements, average the middle two
+       #the number of elements are even => average the middle two
        return [average [lrange $l [expr {($len >> 1) - 1}] [expr {$len >> 1}]]]
     }
 }
@@ -65,10 +65,10 @@ proc test {command expected} {
 }
 
 puts "Unit tests:"
-test {expr [sum $list]} $sumValue
-test {expr [average $list]} $averageValue
-test {expr [median $list]} $medianValue
-#test {expr [descendingSort $list]} $descendingSortList
-#test {expr [isNinePresented $list]} $ninePresentedList
+test {expr [sum $list]} 9887671813
+test {expr [average $list]} 1098630201.4444444
+test {expr [median $list]} -1
+
+
 
 
